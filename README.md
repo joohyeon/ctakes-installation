@@ -1,5 +1,4 @@
-# cTAKES
-cTAKES/YTEX installation instruction on Windows
+# cTAKES/YTEX installation instruction on Windows
 
 First step before reading this instruction I would recommed to read instruction on official cTAKES website  (https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide). I had a problem installing cTAKES/YTEX so decided to write brief tips how I installed successfully. 
 
@@ -18,10 +17,16 @@ Copy all files under apache-ctakes-4.0.0 (no need to have apache-ctakes-4.0.0 fo
 
 Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to System in Control pannel, or you can open control panel then click System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKE_HOME" in User variable, and your home directory ex.) C:\cTAKES in Value column. 
 
+TODO: How to use UMLS dataset and getting its permission.
 
 
+If Step 1 and Step 2 is completed, you can run cTAKES debugger Processing Engine. Now we want to install YTEX. 
 
 
+3. Install YTEX
+
+Intalling YTEX is not simply although it is part of cTAKES in 4.0.0. 
+CTAKES_HOME\bin\ctakes-ytex\script 
 
 
 
