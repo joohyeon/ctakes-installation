@@ -1,6 +1,8 @@
 # cTAKES/YTEX installation instruction on Windows and MsSQL
 
-I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. First goal is to install an cTAKES excutable file and run a couple of samples and check outputs. Next goal is to run cTAKES from the source code. My goal is to make some improvement of cTAKES algorithms and to develop a wrapper to run cTAKES the way I need to.
+YTEX is an extension of cTAKES developed by Yale. This extension enables to store cTAKES outputs in a database such as Oracle, MySQL or MsSQL. I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. 
+
+First goal is to install an cTAKES excutable file and run a couple of samples and check outputs. Next goal is to run cTAKES from the source code. My goal is to make some improvement of cTAKES algorithms and to develop a wrapper to run cTAKES the way I need to.
 
 If you are installing this NLP tool first time, than I would recommed to read the original instruction on official [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
 
@@ -10,7 +12,7 @@ If you are installing this NLP tool first time, than I would recommed to read th
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * User Installation: Windows - apache-ctakes-4.0.0-bin.zip
 * UMLS Dictionary: All Versions - ctakes-resources-4.0-bin.zip
-* Source code - apache-ctaeks-4.0.0-src.zip (if you are interested in looking into its source code)
+* Source code: Windows - apache-ctaeks-4.0.0-src.zip (if you are interested in looking into its source code)
 
 Once downladed two files, decompress the two zip files then you will see two folders 1) apache-ctakes-4.0.0 and 2) resources. 
 
@@ -29,6 +31,8 @@ Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie
 * Then click Run > Run AggregatePlaintextProcessor in the menu. This is disabled if you haven't load AE module.
 
 You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
+
+If you need to use YTEX 
 
 
 ## 2. Set cTAKES Home Directory:
