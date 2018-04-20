@@ -1,4 +1,4 @@
-# cTAKES/YTEX installation instruction on Windows and MsSQL
+# cTAKES/YTEX installation instruction on Windows and MySQL/MsSQL
 
 YTEX is an extension of cTAKES developed by Yale. This extension enables to store cTAKES outputs in a database such as Oracle, MySQL or MsSQL. I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. 
 
@@ -24,7 +24,7 @@ You are done installing the cTAKES. Here is a aimple test you can do whether cTA
 * Click bin\runctakesCVD.bat
 * CAS Visual Debugger (CVD) will popup. Then click Run > Load AE in the menu. You need to load an analysis engine first. 
 * Select AggregatePlaintextProcessor.xml under desc\ctakes-clinical-pipeline\desc\anaysis_engine. 
-* Then copy below and paste it to the CVD Text field.
+* Then copy below example from cTAKES User Guide website, and paste it to the CVD Text field.
 ```
 Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain.
 ```
@@ -32,26 +32,51 @@ Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie
 
 You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
 
-If you need to use YTEX 
+If you need YTEX installed, continue to read below. Otherwise, you can just stop here.
 
 
 ## 2. Set cTAKES Home Directory:
 
 You need to set cTAKES home directory. You can just use the path where unzipped the file or have a new path where you can easily reference like D:\cTAKES. 
 
-Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to System in Control pannel, or you can open control panel then click System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKE_HOME" in User variable, and your home directory ex.) C:\cTAKES in Value column. 
+Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to System in Control pannel, or you can open control panel then click System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in User variable, and your home directory ex.) D:\cTAKES in Value column. 
 
 TODO: How to use UMLS dataset and getting its permission.
 
 
-If Step 1 and Step 2 is completed, you can run cTAKES debugger Processing Engine. Now we want to install YTEX. 
-
 
 ## 3. Install YTEX
 
-Now, installing YTEX. cTAKES version 4.0.0 is integrated with YTEX. However, intalling YTEX is not simple that many trouble running the program. So I had to patch ytex myself to avoid problems. 
+Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple. I faced many troubles running the program and this is the main reason I started to make some notes. 
 
-First, I would recommend to read YTEX intallation guide - https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation
+I first read [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) on their website to understand what it. This is the cTAKES old version which I don't end up use most of them, but gives me an insight how to install tables in my database. You can also find addintional YTEX documents in [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
+
+To setup YTEX on cTAKES 4.0.0, I need to know how to execute the setup script in bin\ctakes-ytex\scripts. In the cTAKES document, I need to navigate to CTAKES_HOME, and execute this command. However, it gave me errors. 
+
+```
+cd /d %CTAKES_HOME%\bin\ctakes-ytex\scripts ..\..\ant.bat -f build-setup.xml all > setup.out 2>&1
+```
+
+You need to open the setup.out file to check error messages. Before checking this make sure you have installed a database as well.
+
+
+### MySQL
+
+#### Create Account
+
+According to the YTEX installation guide, you need to create an YTEX account.
+```
+CREATE USER 'ytex'@'%' IDENTIFIED BY 'ytex';
+GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'%';
+```
+
+If you change your directory to \bin\ctakes-ytex\scripts, and execute this command
+```
+D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
+```
+
+
+
 
 At the end of YTEX user guide, you need to run a setup script to install YTEX. However, it is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no DB connector lib. 
 
