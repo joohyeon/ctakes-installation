@@ -133,7 +133,7 @@ You might see
 Failed to execute:   create table feature_rank ( feature_rank_id int auto_increment not 
 
 bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
-find sql scripts that carete feature_rank and hotspot_sentence, and replace column name rank to `rank`. The newer version MySQL doesn't allow to use reserved names without a quotation.
+find sql scripts that carete feature_rank and hotspot_sentence, and replace column name rank to \`rank\`. The newer version MySQL doesn't allow to use reserved names without a quotation.
 
 '''
 create table feature_rank (
@@ -146,7 +146,7 @@ create table feature_rank (
   index ix_feature_rank(feature_eval_id, \`rank\`),
   index ix_feature_evaluation(feature_eval_id, evaluation),
   index fk_feature_eval(feature_eval_id)
-) engine=myisam comment 'evaluation of a feature in a corpus';
+) engine=myisam comment 'evaluation of a feature in a corpus'
 '''
 
 
