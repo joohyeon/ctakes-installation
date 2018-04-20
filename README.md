@@ -18,7 +18,7 @@ Once downladed two files, decompress the two zip files then you will see two fol
 
 Now, just copy the resource files to apache-ctakes-4.0.0 folder. You will also see the resources folder under the apache-ctakes-4.0.0, but don't worry. You can overwrite files. The UMLS resource contains umls2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
-### Quick check
+### Quick Check
 You are done installing the cTAKES. Here is a aimple test you can do whether cTAKES is working or not.
 
 * Click bin\runctakesCVD.bat
@@ -79,7 +79,7 @@ If you are uinsg later MySQL which requires caching_sha2_password, add WITH mysq
 CREATE USER 'ytex'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ytex';
 ```
 
-### Setup DB Account in YTEX
+#### Setup DB Account in YTEX
 
 Copying a MySQL config file from the ytex resource jar file to the cTAKES resources folder. You run following four commands.
 
@@ -92,16 +92,16 @@ copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex
 
 If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. 
 
--- 
-Altenative way. 
+If you use a different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
+
+Again, make sure your ytex.properties file is stored in "%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties". You also make sure db name, user id/pw, schema information are correct. 
+
+
+#### Altenative way 
 
 If you don't want to use jar to extract the db configuration file, you can unzip ctakes-ytex-res-4.0.0.jar file in lib, and copy ytex folder from the unzipped lib to CTAKES_HOME\resources\org\apache\ctakes\ytex.
 
 There are a couple of examples of ytex.properties which you can select one that match your database, and rename the example file   to ytex.properties. In my case, I used ytex.properties.mssql.example and renamed it to ytex.properties.
-
-If you use a different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
-
-Again, make sure your ytex.properties file is stored in "%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties". You also make sure db name, user id/pw, schema information are correct. 
 
 
 Setup UMLS DB
@@ -116,29 +116,40 @@ Install YTEX Database
 
 This is where you will expect to see errors.. and failed to install YTEX. 
 
-I first change my current directory to \bin\ctakes-ytex\scripts, and execute this command. 
+I first changed my current directory to \bin\ctakes-ytex\scripts, and execute this command. 
+
 ```
 D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
 ```
 
+This `ant` build command is to install tables in the ytex database, and also add necessary data. If you don't have UMLS set up in your local database, this will takes a couple of minutes. If you have UMLS installed, a couple of hours to install necessary data.  
+
+I ran this command this `ant` build script and as erroring out I noted down the issue and the way to solve it. You can skip some of issues if you don't see it. Just search a couple of key words in your error messages. You may able to find the solution. 
+
+
+#### Issue 1 - DBPing
 It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no MySQL DB connector lib. 
 
-You need to download database connector library, and copy the file to CTAKE_HOME\lib. 
+You need to download database connector library, and copy the file to %CTAKES_HOME%\lib. 
 - MySQL: mysql-conntector-java (link)
 - MsSQL: sqljdbc (link) 
 
-
-After adding this library, run the command again and will see something is running.. It is installing data to DB.
-
+After adding this library, run the command again and monitor command messages. You will see new error messages.
 
 
-1. 
+#### Issue 2 - rank 
 
+The MySQL version 8 or later doesn't like to have a column name using a reserved word. YTEX db scripts use rank in the column name and generated following error message.
+```
 Failed to execute:   create table feature_rank ( feature_rank_id int auto_increment not 
+```
 
-bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
-find sql scripts that carete feature_rank and hotspot_sentence, and replace column name rank to \`rank\`. The newer version MySQL doesn't allow to use reserved names without a quotation.
+You can simply follow this step and replace the table.
+* open a file - bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
+* find sql scripts that use rank as a column name (feature_rank and hotspot_sentence tables)
+* replace column name rank to \`rank\`
 
+Here is the table that I changed.
 <pre>
 create table feature_rank (
   feature_rank_id int auto_increment not null primary key,
@@ -151,6 +162,8 @@ create table feature_rank (
   index ix_feature_evaluation(feature_eval_id, evaluation),
   index fk_feature_eval(feature_eval_id)
 ) engine=myisam comment 'evaluation of a feature in a corpus'
+
+...
 
 create table hotspot_sentence (
     hotspot_sentence_id int auto_increment not null primary key,
@@ -166,6 +179,8 @@ create table hotspot_sentence (
 ) engine = myisam comment 'sentences that contain hotspots at specified threshold';
 </pre>
 
+
+#### Issue 3 - HibernateException
 2.
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
 
