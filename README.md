@@ -70,6 +70,23 @@ CREATE USER 'ytex'@'%' IDENTIFIED BY 'ytex';
 GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'%';
 ```
 
+### Setup DB Account in YTEX
+
+Copying a MySQL config file from jar file to resources folder. 
+
+You run following four commands.
+
+```
+cd %CTAKES_HOME%\resources
+mkdir org\apache\ctakes\ytex
+jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql.example 
+copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
+```
+
+
+ytex.properti
+
+
 If you change your directory to \bin\ctakes-ytex\scripts, and execute this command
 ```
 D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
