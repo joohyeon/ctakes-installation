@@ -2,16 +2,15 @@
 
 I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. First goal is to install an cTAKES excutable file and run a couple of samples and check outputs. Next goal is to run cTAKES from the source code. My goal is to make some improvement of cTAKES algorithms and to develop a wrapper to run cTAKES the way I need to.
 
-If you are installing this NLP tool first time, than I would recommed to read the original instruction on official [cTAKES website] (https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide). 
+If you are installing this NLP tool first time, than I would recommed to read the original instruction on official [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
 
 
 ## 1. Donwload cTAKES and UMLS reousrces
 
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
-User Installation: Windows - apache-ctakes-4.0.0-bin.zip
-UMLS Dictionary: All Versions - ctakes-resources-4.0-bin.zip
-
-If you are interested in looking into its source code, you can also download the source code - apache-ctaeks-4.0.0-src.zip.
+* User Installation: Windows - apache-ctakes-4.0.0-bin.zip
+* UMLS Dictionary: All Versions - ctakes-resources-4.0-bin.zip
+* Source code - apache-ctaeks-4.0.0-src.zip (if you are interested in looking into its source code)
 
 Once downladed two files, decompress the two zip files then you will see two folders 1) apache-ctakes-4.0.0 and 2) resources. 
 
