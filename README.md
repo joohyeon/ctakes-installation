@@ -25,9 +25,9 @@ You are done installing the cTAKES. Here is a aimple test you can do whether cTA
 * CAS Visual Debugger (CVD) will popup. Then click Run > Load AE in the menu. You need to load an analysis engine first. 
 * Select AggregatePlaintextProcessor.xml under desc\ctakes-clinical-pipeline\desc\anaysis_engine. 
 * Then copy below example from cTAKES User Guide website, and paste it to the CVD Text field.
-```
-Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain.
-```
+
+> Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain.
+
 * Then click Run > Run AggregatePlaintextProcessor in the menu. This is disabled if you haven't load AE module.
 
 You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
@@ -60,7 +60,8 @@ cd /d %CTAKES_HOME%\bin\ctakes-ytex\scripts ..\..\ant.bat -f build-setup.xml all
 You need to open the setup.out file to check error messages. Before checking this make sure you have installed a database as well.
 
 
-### MySQL
+MySQL
+------------
 
 This is summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
 
@@ -103,12 +104,15 @@ If you use a different passowrd, you need to open the "ytex.properties" file and
 Again, make sure your ytex.properties file is stored in "%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties". You also make sure db name, user id/pw, schema information are correct. 
 
 
-### Setup UMLS DB
+Setup UMLS DB
+------------
 
 Recommend to install UMLS.. (link)
 
 
-### Install YTEX Database
+
+Install YTEX Database
+------------
 
 This is where you will expect to see errors.. and failed to install YTEX. 
 
@@ -126,7 +130,7 @@ You need to download database connector library, and copy the file to CTAKE_HOME
 
 After adding this library, run the command again and will see something is running.. It is installing data to DB.
 
-You might see 
+
 
 1. 
 
