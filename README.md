@@ -145,9 +145,9 @@ Failed to execute:   create table feature_rank ( feature_rank_id int auto_increm
 ```
 
 You can simply follow this step and replace the table.
-* open a file - bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
-* find sql scripts that use rank as a column name (feature_rank and hotspot_sentence tables)
-* replace column name rank to \`rank\`
+1. open a file - bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
+2. find sql scripts that use rank as a column name (feature_rank and hotspot_sentence tables)
+3. replace column name rank to \`rank\`
 
 Here is the table that I changed.
 <pre>
@@ -181,7 +181,7 @@ create table hotspot_sentence (
 
 
 #### Issue 3 - HibernateException
-2.
+
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
 
 Detail:
