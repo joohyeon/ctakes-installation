@@ -1,4 +1,4 @@
-# cTAKES/YTEX installation instruction on Windows and MySQL/MsSQL
+# cTAKES/YTEX installation on Windows & MySQL/MsSQL
 
 YTEX is an extension of cTAKES developed by Yale. This extension enables to store cTAKES outputs in a database such as Oracle, MySQL or MsSQL. I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. 
 
