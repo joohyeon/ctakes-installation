@@ -141,27 +141,29 @@ create table feature_rank (
   feature_eval_id int not null comment 'fk feature_eval',
   feature_name varchar(50) not null comment 'name of feature',
   evaluation double not null default 0 comment 'measurement of feature worth',
-  ``rank`` int not null default 0 comment 'rank among all features',
+  \`rank\` int not null default 0 comment 'rank among all features',
   unique index nk_feature_name(feature_eval_id, feature_name),
-  index ix_feature_rank(feature_eval_id, ``rank``),
+  index ix_feature_rank(feature_eval_id, \`rank\`),
   index ix_feature_evaluation(feature_eval_id, evaluation),
   index fk_feature_eval(feature_eval_id)
 ) engine=myisam comment 'evaluation of a feature in a corpus';
+'''
 
+
+'''
 create table hotspot_sentence (
     hotspot_sentence_id int auto_increment not null primary key,
     hotspot_instance_id int not null comment 'fk hotspot_instance',
     anno_base_id int not null comment 'fk anno_sentence',
     evaluation double not null default 0 comment 'max eval from hotspot',
-    ``rank`` int not null default 0 comment 'min rank from hotspot',
+    \`rank\` int not null default 0 comment 'min rank from hotspot',
     unique index NK_hotspot_sentence (hotspot_instance_id, anno_base_id),
     index FK_hotspot_instance_id (hotspot_instance_id),
 	index FK_anno_base_id (anno_base_id),
     INDEX IX_evaluation (hotspot_instance_id, evaluation),
-    INDEX IX_rank (hotspot_instance_id, ``rank``)
+    INDEX IX_rank (hotspot_instance_id, \`rank\`)
 ) engine = myisam comment 'sentences that contain hotspots at specified threshold';
 '''
-
 
 2.
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
