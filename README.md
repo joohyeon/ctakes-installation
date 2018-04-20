@@ -73,6 +73,11 @@ CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'ytex';
 GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'localhost';
 ```
 
+If you are uinsg later MySQL which requires caching_sha2_password, add WITH mysql_native_password when you create an account.
+```
+CREATE USER 'ytex'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ytex';
+```
+
 ### Setup DB Account in YTEX
 
 Copying a MySQL config file from the ytex resource jar file to the cTAKES resources folder. You run following four commands.
@@ -84,28 +89,79 @@ jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql
 copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
 ```
 
-jar is inside jdk bin folder. If you have a trouble run "jar" command, you can google to how to add jar to Windows enviornment. If you use different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
+If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. 
+
+-- 
+Altenative way. 
+
+If you don't want to use jar to extract the db configuration file, you can unzip ctakes-ytex-res-4.0.0.jar file in lib, and copy ytex folder from the unzipped lib to CTAKES_HOME\resources\org\apache\ctakes\ytex.
+
+There are a couple of examples of ytex.properties which you can select one that match your database, and rename the example file   to ytex.properties. In my case, I used ytex.properties.mssql.example and renamed it to ytex.properties.
+
+If you use a different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
+
+Again, make sure your ytex.properties file is stored in "%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties". You also make sure db name, user id/pw, schema information are correct. 
+
+
+### Setup UMLS DB
+
+Recommend to install UMLS.. (link)
 
 
 ### Install YTEX Database
+
+This is where you will expect to see errors.. and failed to install YTEX. 
 
 I first change my current directory to \bin\ctakes-ytex\scripts, and execute this command. 
 ```
 D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
 ```
 
-It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no DB connector lib. 
+It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no MySQL DB connector lib. 
 
 You need to download database connector library, and copy the file to CTAKE_HOME\lib. 
 - MySQL: mysql-conntector-java (link)
 - MsSQL: sqljdbc (link) 
 
-You also see that "cTAKES\resources\org\apache\ctakes\ytex\ytex.properties (The system cannot find the path specified)" in the error. You need a ytex.properties file which contains db connection, user id/pw, schema, etc. 
 
-1.
-If you check your CTAKES_HOME\resources\org\apache\ctakes\, there is no ytex fold created. Unfortunately, this is not included in the 4.0 installation packages. Altenatively, you can unzip ctakes-ytex-res-4.0.0.jar file in lib, and copy ytex folder from the unzipped lib to CTAKES_HOME\resources\org\apache\ctakes\ytex.
+After adding this library, run the command again and will see something is running.. It is installing data to DB.
 
-There are a couple of examples of ytex.properties which you can select one that match your database, and rename the example file   to ytex.properties. In my case, I used ytex.properties.mssql.example and renamed it to ytex.properties.
+You might see 
+
+1. 
+
+Failed to execute:   create table feature_rank ( feature_rank_id int auto_increment not 
+
+bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
+find sql scripts that carete feature_rank and hotspot_sentence, and replace column name rank to `rank`. The newer version MySQL doesn't allow to use reserved names without a quotation.
+
+'''
+create table feature_rank (
+  feature_rank_id int auto_increment not null primary key,
+  feature_eval_id int not null comment 'fk feature_eval',
+  feature_name varchar(50) not null comment 'name of feature',
+  evaluation double not null default 0 comment 'measurement of feature worth',
+  `rank` int not null default 0 comment 'rank among all features',
+  unique index nk_feature_name(feature_eval_id, feature_name),
+  index ix_feature_rank(feature_eval_id, `rank`),
+  index ix_feature_evaluation(feature_eval_id, evaluation),
+  index fk_feature_eval(feature_eval_id)
+) engine=myisam comment 'evaluation of a feature in a corpus';
+
+create table hotspot_sentence (
+    hotspot_sentence_id int auto_increment not null primary key,
+    hotspot_instance_id int not null comment 'fk hotspot_instance',
+    anno_base_id int not null comment 'fk anno_sentence',
+    evaluation double not null default 0 comment 'max eval from hotspot',
+    `rank` int not null default 0 comment 'min rank from hotspot',
+    unique index NK_hotspot_sentence (hotspot_instance_id, anno_base_id),
+    index FK_hotspot_instance_id (hotspot_instance_id),
+	index FK_anno_base_id (anno_base_id),
+    INDEX IX_evaluation (hotspot_instance_id, evaluation),
+    INDEX IX_rank (hotspot_instance_id, `rank`)
+) engine = myisam comment 'sentences that contain hotspots at specified threshold';
+'''
+
 
 2.
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
@@ -116,8 +172,7 @@ Detail:
 As it says, there is no class and you need to download a jar called hibernate-core-4.2.6.Final, and copy it to the CTAKES_HOME/lib folder.  download link https://mvnrepository.com/artifact/org.hibernate/hibernate-core/4.2.6.Final
 
 3.
-After re-run the ant script, I passed HibernateException, but build was still failed due to XXXXX.
-
+After re-run the ant script, I passed HibernateException, but build was still failed due to 
 "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/MetadataProvider"
 
 Again, no class found in the program. To resovle this issue, you need to download a hibernate-commons-annotations-4.0.2.Final lib. Link:
