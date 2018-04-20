@@ -1,19 +1,39 @@
-# cTAKES/YTEX installation instruction on Windows
+# cTAKES/YTEX installation instruction on Windows and MsSQL
 
-First step before reading this instruction I would recommed to read instruction on official cTAKES website  (https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide). I had a problem installing cTAKES/YTEX so decided to write brief tips how I installed successfully. 
+I had a couple of problems installing cTAKES and YTEX on Windows. This helps tacking what problems I had to face and to tweak them to successfully run the cTAKES and YTEX application. First goal is to install an cTAKES excutable file and run a couple of samples and check outputs. Next goal is to run cTAKES from the source code. My goal is to make some improvement of cTAKES algorithms and to develop a wrapper to run cTAKES the way I need to.
+
+If you are installing this NLP tool first time, than I would recommed to read the original instruction on official cTAKES website  (https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide). 
 
 
-1. Donwload cTAKES and UMLS reousrces
+## 1. Donwload cTAKES and UMLS reousrces
 
 Download cTAKES from http://ctakes.apache.org/downloads.cgi
 User Installation: Windows - apache-ctakes-4.0.0-bin.zip
 UMLS Dictionary: All Versions - ctakes-resources-4.0-bin.zip
 
+If you are interested in looking into its source code, you can also download the source code - apache-ctaeks-4.0.0-src.zip.
+
 Once downladed two files, decompress the two zip files then you will see two folders 1) apache-ctakes-4.0.0 and 2) resources. 
 
-Copy all files under apache-ctakes-4.0.0 (no need to have apache-ctakes-4.0.0 folder itself) and also copy the resources folder to your ctakes hoome directory ex.) C:\cTAKES. You will notice that there are the same file names so while copying files you just need to overwrite all files. ctakes-resources-4.0 has more rich UMLS data than the basic cTAKES tool. 
+Now, just copy the resource files to apache-ctakes-4.0.0 folder. You will also see the resources folder under the apache-ctakes-4.0.0, but don't worry. You can overwrite files. The UMLS resource contains umls2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
-2. Set cTAKES Home Directory:
+### Quick check
+You are done installing the cTAKES. Here is a aimple test you can do whether cTAKES is working or not.
+'''
+bin\runctakesCVD.bat
+CAS Visual Debugger (CVD) will popup. Then click Run > Load AE in the menu. You need to load an analysis engine first. 
+Select AggregatePlaintextProcessor.xml under desc\ctakes-clinical-pipeline\desc\anaysis_engine. 
+Then copy and paste "Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain." in the Text field. (from cTAKES User Guide website)
+
+Then click Run > Run AggregatePlaintextProcessor in the menu. This is disabled if you haven't load AE module.
+'''
+
+You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
+
+
+## 2. Set cTAKES Home Directory:
+
+You need to set cTAKES home directory. You can just use the path where unzipped the file or have a new path where you can easily reference like D:\cTAKES. 
 
 Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to System in Control pannel, or you can open control panel then click System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKE_HOME" in User variable, and your home directory ex.) C:\cTAKES in Value column. 
 
@@ -23,7 +43,7 @@ TODO: How to use UMLS dataset and getting its permission.
 If Step 1 and Step 2 is completed, you can run cTAKES debugger Processing Engine. Now we want to install YTEX. 
 
 
-3. Install YTEX
+## 3. Install YTEX
 
 Now, installing YTEX. cTAKES version 4.0.0 is integrated with YTEX. However, intalling YTEX is not simple that many trouble running the program. So I had to patch ytex myself to avoid problems. 
 
