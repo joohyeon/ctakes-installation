@@ -62,19 +62,20 @@ You need to open the setup.out file to check error messages. Before checking thi
 
 ### MySQL
 
+This is summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
+
 #### Create Account
 
 According to the YTEX installation guide, you need to create an YTEX account.
 ```
-CREATE USER 'ytex'@'%' IDENTIFIED BY 'ytex';
-GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'%';
+CREATE DATABASE ytex CHARACTER SET utf8;
+CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'ytex';
+GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'localhost';
 ```
 
 ### Setup DB Account in YTEX
 
-Copying a MySQL config file from jar file to resources folder. 
-
-You run following four commands.
+Copying a MySQL config file from the ytex resource jar file to the cTAKES resources folder. You run following four commands.
 
 ```
 cd %CTAKES_HOME%\resources
@@ -83,19 +84,17 @@ jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql
 copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
 ```
 
+jar is inside jdk bin folder. If you have a trouble run "jar" command, you can google to how to add jar to Windows enviornment. If you use different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
 
-ytex.properti
 
+### Install YTEX Database
 
-If you change your directory to \bin\ctakes-ytex\scripts, and execute this command
+I first change my current directory to \bin\ctakes-ytex\scripts, and execute this command. 
 ```
 D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
 ```
 
-
-
-
-At the end of YTEX user guide, you need to run a setup script to install YTEX. However, it is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no DB connector lib. 
+It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no DB connector lib. 
 
 You need to download database connector library, and copy the file to CTAKE_HOME\lib. 
 - MySQL: mysql-conntector-java (link)
