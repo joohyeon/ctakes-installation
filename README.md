@@ -135,7 +135,7 @@ Failed to execute:   create table feature_rank ( feature_rank_id int auto_increm
 bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
 find sql scripts that carete feature_rank and hotspot_sentence, and replace column name rank to \`rank\`. The newer version MySQL doesn't allow to use reserved names without a quotation.
 
-'''
+
 create table feature_rank (
   feature_rank_id int auto_increment not null primary key,
   feature_eval_id int not null comment 'fk feature_eval',
@@ -147,10 +147,10 @@ create table feature_rank (
   index ix_feature_evaluation(feature_eval_id, evaluation),
   index fk_feature_eval(feature_eval_id)
 ) engine=myisam comment 'evaluation of a feature in a corpus'
-'''
 
 
-'''
+
+<pre>
 create table hotspot_sentence (
     hotspot_sentence_id int auto_increment not null primary key,
     hotspot_instance_id int not null comment 'fk hotspot_instance',
@@ -163,7 +163,7 @@ create table hotspot_sentence (
     INDEX IX_evaluation (hotspot_instance_id, evaluation),
     INDEX IX_rank (hotspot_instance_id, \`rank\`)
 ) engine = myisam comment 'sentences that contain hotspots at specified threshold';
-'''
+</pre>
 
 2.
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
