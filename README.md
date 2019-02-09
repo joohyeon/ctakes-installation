@@ -19,7 +19,7 @@ Once downladed two files, decompress the two zip files then you will see two fol
 Now, just copy the resource files to apache-ctakes-4.0.0 folder. You will also see the resources folder under the apache-ctakes-4.0.0, but don't worry. You can overwrite files. The UMLS resource contains umls2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
 ### Quick Check
-You are done installing the cTAKES. Here is a aimple test you can do whether cTAKES is working or not.
+You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
 
 * Click bin\runctakesCVD.bat
 * CAS Visual Debugger (CVD) will popup. Then click Run > Load AE in the menu. You need to load an analysis engine first. 
@@ -37,9 +37,9 @@ If you need YTEX installed, continue to read below. Otherwise, you can just stop
 
 ## 2. Set cTAKES Home Directory:
 
-You need to set cTAKES home directory. You can just use the path where unzipped the file or have a new path where you can easily reference like D:\cTAKES. 
+You need to set cTAKES home directory. You can just use the path where you unzipped the file or have a new path where you can easily reference like D:\cTAKES. 
 
-Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to System in Control pannel, or you can open control panel then click System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in User variable, and your home directory ex.) D:\cTAKES in Value column. 
+Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in User variable, and your home directory ex.) D:\cTAKES in Value column. 
 
 TODO: How to use UMLS dataset and getting its permission.
 
@@ -47,11 +47,11 @@ TODO: How to use UMLS dataset and getting its permission.
 
 ## 3. Install YTEX
 
-Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple. I faced many troubles running the program and this is the main reason I started to make some notes. 
+Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple to install. I ran into many troubles to install YTEX and this is the main reason I started to make some notes. 
 
-I first read [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) on their website to understand what it. This is the cTAKES old version which I don't end up use most of them, but gives me an insight how to install tables in my database. You can also find addintional YTEX documents in [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
+I first read [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) on their website to understand what it does. This website is the old version of cTAKES. Although it gave me some insights how to install YTEX on MsSQL and MySQL databases. You can also find addintional YTEX documents in [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
 
-To setup YTEX on cTAKES 4.0.0, I need to know how to execute the setup script in bin\ctakes-ytex\scripts. In the cTAKES document, I need to navigate to CTAKES_HOME, and execute this command. However, it gave me errors. 
+To setup cTAKES 4.0.0 + YTEX, I need to know how to execute the setup script in bin\ctakes-ytex\scripts. In the cTAKES document, I need to navigate to CTAKES_HOME, and execute this command. However, it gave me errors. 
 
 ```
 cd /d %CTAKES_HOME%\bin\ctakes-ytex\scripts ..\..\ant.bat -f build-setup.xml all > setup.out 2>&1
