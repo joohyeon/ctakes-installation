@@ -63,7 +63,7 @@ You need to open the setup.out file to check error messages. Before checking thi
 MySQL
 ------------
 
-This is summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
+This is a summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
 
 #### Create Account
 
