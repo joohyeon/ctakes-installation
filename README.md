@@ -33,7 +33,7 @@ Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`
 
 
 
-### Quick Check
+## Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
 
 Run `D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat` as Administraotr 
@@ -50,13 +50,17 @@ You should be able to parse the text blob using cTAKES and see results on the An
 <!-- TODO: How to use UMLS dataset and getting its permission.-->
 
 
-## Install YTEX 
+## YTEX Installation
 
-Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple to install. I ran into many troubles to install YTEX and this is the main reason I started to make some notes. 
+YTEX is now integrated into cTAKES 4.0.0. However, installing YTEX is not simple. I ran into many issues and errors while setting up YTEX in MySQL and MsSQL. Here I am keeping how I resolved the issues.
 
-I first read [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) on their website to understand what it does. This website is the old version of cTAKES. Although it gave me some insights how to install YTEX on MsSQL and MySQL databases. You can also find addintional YTEX documents in [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
+If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) website. It is pretty good and gave me good insights. If you want to learn more, check YTEX documents [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
 
-To setup cTAKES 4.0.0 + YTEX, I need to know how to execute the setup script in bin\ctakes-ytex\scripts. In the cTAKES document, I need to navigate to CTAKES_HOME, and execute this command. However, it gave me errors. 
+
+To setup cTAKES 4.0.0 + YTEX, I need to run a `build-setup.xml` file in `D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts'. 
+
+
+I followed the script below in the cTAKES/YTEX installation guide, but gave me errors.
 
 ```
 cd /d %CTAKES_HOME%\bin\ctakes-ytex\scripts ..\..\ant.bat -f build-setup.xml all > setup.out 2>&1
