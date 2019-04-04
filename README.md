@@ -2,9 +2,7 @@
 
 cTAKES is an NLP tools for extracting clinical information from clinical notes in electronic medical records. YTEX is an extension of cTAKES to store extracted data from cTAKES in a relational database such as Oracle, MySQL or MsSQL. I had a couple of problems installing cTAKES/YTEX on Windows. This instruction helps me tacking what problems I ran into and how I made it work successfully. 
 
-First goal is to install an cTAKES excutable file and run a couple of samples and check outputs. Next goal is to run cTAKES from the source code. My goal is to make some improvement of cTAKES algorithms and to develop a wrapper to run cTAKES the way I need to.
-
-If you are installing this NLP tool first time, than I would recommed to read the original instruction on official [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
+If installing this NLP tool first time, I would recommed you to read the original instruction on [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
 
 
 ## 1. Donwload cTAKES and UMLS reousrces
