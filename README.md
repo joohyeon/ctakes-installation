@@ -20,15 +20,20 @@ You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "r
 
 TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
 
+---
 
 ## Set Home Enviornment
 
 Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "Windows button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables". Add cTAKES Home Directory.
 
-example)
-Variable Name: CTAKES_HOME
-Variable Value: D:\cTAKES\apache-ctakes-4.0.0
 
+example)
+
+Variable Name: `CTAKES_HOME`
+
+Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`
+
+---
 
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
