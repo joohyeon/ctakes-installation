@@ -14,7 +14,9 @@ Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 
 Once downladed files, create a new folder and decompress all zip files.
 
-Now, just copy the resource files to apache-ctakes-4.0.0 folder. You will also see the resources folder under the apache-ctakes-4.0.0, but don't worry. You can overwrite files. The UMLS resource contains umls2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
+You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "resources" folder exists under the apache-ctakes-4.0.0, you see a popup saying that "Do you want to replace it?". Don't worry. You can overwrite files. The UMLS resource contains UMLS2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
+
+TODO: It is 2019 now.. show how to upgrade the UMLS lookup table..
 
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
