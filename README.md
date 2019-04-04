@@ -1,48 +1,48 @@
-# cTAKES/YTEX installation on Windows & MySQL/MsSQL
+# cTAKES/YTEX installation
 
 cTAKES is an NLP tools for extracting clinical information from clinical notes in electronic medical records. YTEX is an extension of cTAKES to store extracted data from cTAKES in a relational database such as Oracle, MySQL or MsSQL. I had a couple of problems installing cTAKES/YTEX on Windows. This instruction helps me tacking what problems I ran into and how I made it work successfully. 
 
 If installing this NLP tool first time, I would recommed you to read the original instruction on [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
 
 
-## 1. Donwload cTAKES and UMLS reousrces
+## Donwload cTAKES and UMLS reousrces
 
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * User Installation: [Windows - apache-ctakes-4.0.0-bin.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.zip)
 * UMLS Dictionary: [All Versions - ctakes-resources-4.0-bin.zip](http://sourceforge.net/projects/ctakesresources/files/ctakes-resources-4.0-bin.zip/download)
 * Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (If you are a developer, download the source code and I will describe things I developed below)
 
-Once downladed files, create a new folder and decompress all zip files.
+Once downladed files, create a new folder say "D:\cTAKES" and decompress all zip files. Three folders are created - D:\cTAKES\apache-ctakes-4.0.0, D:\cTAKES\apache-ctakes-4.0.0-src, D:\cTAKES\resources.
 
 You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "resources" folder exists under the apache-ctakes-4.0.0, you see a popup saying that "Do you want to replace it?". Don't worry. You can overwrite files. The UMLS resource contains UMLS2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
 TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
 
 
+## Set cTAKES Home Directory
+
+Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "Windows button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in the Variable name, and "D:\cTAKES\apache-ctakes-4.0.0" in the Variable value. 
+
+TODO: How to use UMLS dataset and getting its permission.
+
+
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
 
-* Click bin\runctakesCVD.bat
-* CAS Visual Debugger (CVD) will popup. Then click Run > Load AE in the menu. You need to load an analysis engine first. 
-* Select AggregatePlaintextProcessor.xml under desc\ctakes-clinical-pipeline\desc\anaysis_engine. 
-* Then copy below example from cTAKES User Guide website, and paste it to the CVD Text field.
+Run D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat as Administraotr 
+* CAS Visual Debugger (CVD) will popup. Then click "Run" > "Load AE" in the menu. You need to load an analysis engine first. 
+* Select "AggregatePlaintextProcessor.xml" under D:\cTAKES\apache-ctakes-4.0.0\desc\ctakes-clinical-pipeline\desc\analysis_engine. 
+* Copy below a text blob, and paste it to the CVD Text field.
 
 > Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain.
 
-* Then click Run > Run AggregatePlaintextProcessor in the menu. This is disabled if you haven't load AE module.
+* Then click "Run" > "Run AggregatePlaintextProcessor" in the menu. This is disabled if you haven't loaded AE module.
 
 You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
 
 If you need YTEX installed, continue to read below. Otherwise, you can just stop here.
 
 
-## 2. Set cTAKES Home Directory:
-
-You need to set cTAKES home directory. You can just use the path where you unzipped the file or have a new path where you can easily reference like D:\cTAKES. 
-
-Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "window button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in User variable, and your home directory ex.) D:\cTAKES in Value column. 
-
-TODO: How to use UMLS dataset and getting its permission.
 
 
 
