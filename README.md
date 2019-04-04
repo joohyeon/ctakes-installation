@@ -5,6 +5,7 @@ cTAKES is an NLP tools for extracting clinical information from clinical notes i
 If installing this NLP tool first time, I would recommed you to read the original instruction on [cTAKES website](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+User+Install+Guide).
 
 
+
 ## Donwload cTAKES and UMLS reousrces
 
 Make sure you have JAVA installed on your machine before reading this instruction.
@@ -20,7 +21,7 @@ You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "r
 
 TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
 
----
+
 
 ## Set Home Enviornment
 
@@ -30,7 +31,7 @@ example)
 Variable Name: `CTAKES_HOME`  
 Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`  
 
----
+
 
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
@@ -46,13 +47,10 @@ Run `D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat` as Administraotr
 
 You should be able to parse the text blob using cTAKES and see results on the Analysis Results. CVD is a good way to check whether cTAKES is working properly or not. You can also see tokenized outputs. 
 
-
-
 <!-- TODO: How to use UMLS dataset and getting its permission.-->
 
----
 
-## Install YTEX
+## Install YTEX 
 
 Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple to install. I ran into many troubles to install YTEX and this is the main reason I started to make some notes. 
 
