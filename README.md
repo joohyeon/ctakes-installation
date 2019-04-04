@@ -14,7 +14,7 @@ Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * UMLS Dictionary: [All Versions - ctakes-resources-4.0-bin.zip](http://sourceforge.net/projects/ctakesresources/files/ctakes-resources-4.0-bin.zip/download)
 * Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (If you are a developer, download the source code and I will describe things I developed below)
 
-Once downladed files, create a new folder say "D:\cTAKES" and decompress all zip files. Three folders are created - D:\cTAKES\apache-ctakes-4.0.0, D:\cTAKES\apache-ctakes-4.0.0-src, D:\cTAKES\resources.
+Once downladed files, create a new folder say `D:\cTAKES` and decompress all zip files. Three folders are created - `D:\cTAKES\apache-ctakes-4.0.0`, `D:\cTAKES\apache-ctakes-4.0.0-src`, `D:\cTAKES\resources`.
 
 You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "resources" folder exists under the apache-ctakes-4.0.0, you see a popup saying that "Do you want to replace it?". Don't worry. You can overwrite files. The UMLS resource contains UMLS2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
@@ -28,9 +28,7 @@ Let's set a cTAKES Home Directory on Windows environment. I typically use short 
 
 
 example)
-
 Variable Name: `CTAKES_HOME`
-
 Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`
 
 ---
@@ -38,9 +36,9 @@ Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
 
-Run D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat as Administraotr 
+Run `D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat` as Administraotr 
 * CAS Visual Debugger (CVD) will popup. Then click "Run" > "Load AE" in the menu. You need to load an analysis engine first. 
-* Select "AggregatePlaintextProcessor.xml" under D:\cTAKES\apache-ctakes-4.0.0\desc\ctakes-clinical-pipeline\desc\analysis_engine. 
+* Select "AggregatePlaintextProcessor.xml" under `D:\cTAKES\apache-ctakes-4.0.0\desc\ctakes-clinical-pipeline\desc\analysis_engine`. 
 * Copy below a text blob, and paste it to the CVD Text field.
 
 > Dr. Nutritious Medical Nutrition Therapy for Hyperlipidemia Referral from: Julie Tester, RD, LD, CNSD Phone contact: (555) 555-1212 Height: 144 cm Current Weight: 45 kg Date of current weight: 02-29-2001 Admit Weight: 53 kg BMI: 18 kg/m2 Diet: General Daily Calorie needs (kcals): 1500 calories, assessed as HB + 20% for activity. Daily Protein needs: 40 grams, assessed as 1.0 g/kg. Pt has been on a 3-day calorie count and has had an average intake of 1100 calories. She was instructed to drink 2-3 cans of liquid supplement to help promote weight gain. She agrees with the plan and has my number for further assessment. May want a Resting Metabolic Rate as well. She takes an aspirin a day for knee pain.
@@ -51,11 +49,11 @@ You should be able to parse the text blob using cTAKES and see results on the An
 
 
 
-
 <!-- TODO: How to use UMLS dataset and getting its permission.-->
 
+---
 
-## 3. Install YTEX
+## Install YTEX
 
 Now, installing YTEX. YTEX is now integrated into cTAKES 4.0.0. However, setting YTEX is not simple to install. I ran into many troubles to install YTEX and this is the main reason I started to make some notes. 
 
