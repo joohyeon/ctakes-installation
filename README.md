@@ -7,6 +7,8 @@ If installing this NLP tool first time, I would recommed you to read the origina
 
 ## Donwload cTAKES and UMLS reousrces
 
+Make sure you have JAVA installed on your machine before reading this instruction.
+
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * User Installation: [Windows - apache-ctakes-4.0.0-bin.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.zip)
 * UMLS Dictionary: [All Versions - ctakes-resources-4.0-bin.zip](http://sourceforge.net/projects/ctakesresources/files/ctakes-resources-4.0-bin.zip/download)
@@ -19,11 +21,13 @@ You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "r
 TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
 
 
-## Set cTAKES Home Directory
+## Set Home Enviornment
 
-Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "Windows button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables" -> Add "CTAKES_HOME" in the Variable name, and "D:\cTAKES\apache-ctakes-4.0.0" in the Variable value. 
+Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "Windows button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables". Add cTAKES Home Directory.
 
-TODO: How to use UMLS dataset and getting its permission.
+example)
+Variable Name: CTAKES_HOME
+Variable Value: D:\cTAKES\apache-ctakes-4.0.0
 
 
 ### Quick Check
@@ -38,12 +42,12 @@ Run D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat as Administraotr
 
 * Then click "Run" > "Run AggregatePlaintextProcessor" in the menu. This is disabled if you haven't loaded AE module.
 
-You shoudl be able to process the document, and able see results on the Analysis Results (attach a pic). If you have a problem of running this example, you need to check if Java is installed. 
-
-If you need YTEX installed, continue to read below. Otherwise, you can just stop here.
+You should be able to parse the text blob using cTAKES and see results on the Analysis Results. CVD is a good way to check whether cTAKES is working properly or not. You can also see tokenized outputs. 
 
 
 
+
+<!-- TODO: How to use UMLS dataset and getting its permission.-->
 
 
 ## 3. Install YTEX
