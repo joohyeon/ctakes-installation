@@ -10,9 +10,9 @@ If installing this NLP tool first time, I would recommed you to read the origina
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * User Installation: [Windows - apache-ctakes-4.0.0-bin.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.zip)
 * UMLS Dictionary: [All Versions - ctakes-resources-4.0-bin.zip](http://sourceforge.net/projects/ctakesresources/files/ctakes-resources-4.0-bin.zip/download)
-* Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (I download it to see source codes)
+* Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (I downloaded it to see source codes)
 
-Once downladed two files, decompress the two zip files then you will see two folders 1) apache-ctakes-4.0.0 and 2) resources. 
+Once downladed files, create a new folder and decompress all zip files.
 
 Now, just copy the resource files to apache-ctakes-4.0.0 folder. You will also see the resources folder under the apache-ctakes-4.0.0, but don't worry. You can overwrite files. The UMLS resource contains umls2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
