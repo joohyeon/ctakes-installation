@@ -10,15 +10,14 @@ If installing this NLP tool first time, I would recommed you to read the origina
 Download [cTAKES webiste](http://ctakes.apache.org/downloads.cgi)
 * User Installation: [Windows - apache-ctakes-4.0.0-bin.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-bin.zip)
 * UMLS Dictionary: [All Versions - ctakes-resources-4.0-bin.zip](http://sourceforge.net/projects/ctakesresources/files/ctakes-resources-4.0-bin.zip/download)
-* Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (I downloaded it to see source codes)
+* Source code: [Windows - apache-ctaeks-4.0.0-src.zip](http://apache.claz.org//ctakes/ctakes-4.0.0/apache-ctakes-4.0.0-src.zip) (If you are a developer, download the source code and I will describe things I developed below)
 
 Once downladed files, create a new folder and decompress all zip files.
 
 You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "resources" folder exists under the apache-ctakes-4.0.0, you see a popup saying that "Do you want to replace it?". Don't worry. You can overwrite files. The UMLS resource contains UMLS2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
-```css
-// TODO: It is 2019 now.. show how to upgrade the UMLS lookup table. -->
-```
+TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
+
 
 ### Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
