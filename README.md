@@ -6,7 +6,7 @@ If installing this NLP tool first time, I would recommed you to read the origina
 
 
 
-## Donwload cTAKES and UMLS reousrces
+# Donwload cTAKES and UMLS reousrces
 
 Make sure you have JAVA installed on your machine before reading this instruction.
 
@@ -33,7 +33,7 @@ Variable Value: `D:\cTAKES\apache-ctakes-4.0.0`
 
 
 
-## Quick Check
+# Quick Check
 You are done installing the cTAKES. Here is a simple test you can do whether cTAKES is working or not.
 
 Run `D:\cTAKES\apache-ctakes-4.0.0\bin\runctakesCVD.bat` as Administraotr 
@@ -50,14 +50,14 @@ You should be able to parse the text blob using cTAKES and see results on the An
 <!-- TODO: How to use UMLS dataset and getting its permission.-->
 
 
-## YTEX Installation
+# YTEX Installation
 
 YTEX is now integrated into cTAKES 4.0.0. However, installing YTEX is not simple. I ran into many issues and errors while setting up YTEX in MySQL and MsSQL. Here I am keeping how I resolved the issues.
 
-If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) website. It is pretty good and gave me good insights. If you want to learn more, check YTEX documents [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
+If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation){:target="_blank"} website. It is pretty good and gave me good insights. If you want to learn more, check YTEX documents [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide){:target="_blank"}. 
 
 
-To setup cTAKES 4.0.0 + YTEX, I need to run a `build-setup.xml` file in `D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts'. 
+To setup cTAKES 4.0.0 + YTEX, I need to run a `build-setup.xml` file in `D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts`. 
 
 
 I followed the script below in the cTAKES/YTEX installation guide, but gave me errors.
