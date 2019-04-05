@@ -23,9 +23,9 @@ TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
 
 
 
-## Set Home Enviornment
+# Set Home Enviornment
 
-Let's set a cTAKES Home Directory on Windows environment. I typically use short cut "Windows button" + "Pause" to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables". Add cTAKES Home Directory.
+Let's set a cTAKES Home Directory on Windows environment. I typically use short cut `Windows button` + `Pause` to open System in Control pannel, or you can follow Control Panel > System and Security > System. Then you click "Advanced system settings" -> "Environment Variables". Add cTAKES Home Directory.
 
 example)  
 Variable Name: `CTAKES_HOME`  
