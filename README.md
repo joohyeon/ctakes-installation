@@ -59,14 +59,14 @@ If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apac
 
 To setup cTAKES 4.0.0 + YTEX, I need to run a `build-setup.xml` file in `D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts`. 
 
-You can just run the script under the script folder, before setting any database connections to see error messages.
+You can just run the script under the script folder, before setting any database connections.
 
 ```
 cd %CTAKES_HOME%\bin\ctakes-ytex\scripts 
 ..\..\ant.bat -f build-setup.xml all > setup.out 
 ```
 
-You now  open the setup.out file to check error messages. My error messages show that ytex.properties file is not found. This file is where I need to configure database connection.
+You now  open the setup.out file to check error messages. My error messages show that `ytex.properties` file is not found. This file is where I need to configure database connection.
 
 ```
 D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
@@ -84,7 +84,16 @@ dbping:
      [java] 	at org.apache.ctakes.ytex.tools.DBPing.main(DBPing.java:38)
 ```
 
-MySQL
+If you check the ytex folder under `D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes\`, you will not find it from the intallation package. You can however find it from the source code (third zipped file) or you can also find it from `ctakes-ytex-res-4.0.0.jar` under the library folder. Since I installed the source code as well, I copied the ytex resource folder. 
+
+* copy D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex-res\src\main\resources\org\apache\ctakes\ytex folder 
+* paste it to D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes
+* rename `ytex.properties.mysql.example` to `ytex.properties`
+
+You can choose Oracle, MsSQL depending on your database. 
+
+
+# MySQL
 ------------
 
 This is a summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
