@@ -54,20 +54,35 @@ You should be able to parse the text blob using cTAKES and see results on the An
 
 YTEX is now integrated into cTAKES 4.0.0. However, installing YTEX is not simple. I ran into many issues and errors while setting up YTEX in MySQL and MsSQL. Here I am keeping how I resolved the issues.
 
-If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation){:target="_blank"} website. It is pretty good and gave me good insights. If you want to learn more, check YTEX documents [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide){:target="_blank"}. 
+If you are new to YTEX, please check [YTEX intallation guide](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation) website. It is pretty good and gave me good insights. If you want to learn more, check YTEX documents [cTAKES 4.0 Component Use Guide](https://cwiki.apache.org/confluence/display/CTAKES/cTAKES+4.0+Component+Use+Guide). 
 
 
 To setup cTAKES 4.0.0 + YTEX, I need to run a `build-setup.xml` file in `D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts`. 
 
-
-I followed the script below in the cTAKES/YTEX installation guide, but gave me errors.
+You can just run the script under the script folder, before setting any database connections to see error messages.
 
 ```
-cd /d %CTAKES_HOME%\bin\ctakes-ytex\scripts ..\..\ant.bat -f build-setup.xml all > setup.out 2>&1
+cd %CTAKES_HOME%\bin\ctakes-ytex\scripts 
+..\..\ant.bat -f build-setup.xml all > setup.out 
 ```
 
-You need to open the setup.out file to check error messages. Before checking this make sure you have installed a database as well.
+You now  open the setup.out file to check error messages. My error messages show that ytex.properties file is not found. This file is where I need to configure database connection.
 
+```
+D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
+Buildfile: D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\build-setup.xml
+
+dbping:
+
+dbping:
+     [java] java.io.FileNotFoundException: D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes\ytex\ytex.properties (The system cannot find the path specified)DBPing: Connection to db failed - please check your settings and try again
+     [java] 
+     [java] 	at java.io.FileInputStream.open0(Native Method)
+     [java] 	at java.io.FileInputStream.open(Unknown Source)
+     [java] 	at java.io.FileInputStream.<init>(Unknown Source)
+     [java] 	at java.io.FileInputStream.<init>(Unknown Source)
+     [java] 	at org.apache.ctakes.ytex.tools.DBPing.main(DBPing.java:38)
+```
 
 MySQL
 ------------
