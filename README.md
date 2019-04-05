@@ -66,7 +66,7 @@ cd %CTAKES_HOME%\bin\ctakes-ytex\scripts
 ..\..\ant.bat -f build-setup.xml all > setup.out 
 ```
 
-You now  open the setup.out file to check error messages. My error messages show that `ytex.properties` file is not found. This file is where I need to configure database connection.
+You now open the setup.out file to check error messages. My error messages show that `ytex.properties` file is not found. This file is where you configure database connection.
 
 ```
 D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
@@ -84,26 +84,35 @@ dbping:
      [java] 	at org.apache.ctakes.ytex.tools.DBPing.main(DBPing.java:38)
 ```
 
-You proabaly cannot find the ytex folder from the intallation package. You can, however, find it from the `source code` (third zipped file) or you can find it from `ctakes-ytex-res-4.0.0.jar` under the `lib` folder. Since I installed the source code as well, I copied the ytex resource folder. 
+You proabaly cannot find the ytex folder from the intallation package. You can, however, find it from the `source code` (third zipped file) or you can find it from `ctakes-ytex-res-4.0.0.jar` under the `lib` folder. 
 
-* copy D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex-res\src\main\resources\org\apache\ctakes\ytex folder 
-* paste it to D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes
+
+Here is how you do if you installed the source code. 
+* copy `D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex-res\src\main\resources\org\apache\ctakes\ytex` folder 
+* paste it to `D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes`
 * rename `ytex.properties.mysql.example` to `ytex.properties`
 
-You can choose Oracle, MsSQL depending on your database. 
+Here is how you can copy `ytex.properties` file from the ctakes resource jar. 
+* cd %CTAKES_HOME%\resources
+* mkdir org\apache\ctakes\ytex
+* jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql.example 
+* copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
+
+If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. 
+
+You can choose different config files such as Oracle, MsSQL or MySQL depending on your database. 
 
 
 # MySQL
-------------
 
-This is a summary of what I read from the cTAKES/YTEX documents. I tried to follow what was suggested and fixed issues as it appears.
+This is a summary of what I did to set up MySQL database and followed cTAKES/YTEX instruction to install YTEX database. I also included how I fixed issues as installing YTEX.
 
-#### Create Account
+#### Create User Account
 
 According to the YTEX installation guide, you need to create an YTEX account.
 ```
 CREATE DATABASE ytex CHARACTER SET utf8;
-CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'ytex';
+CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'localhost';
 ```
 
@@ -113,17 +122,6 @@ CREATE USER 'ytex'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ytex';
 ```
 
 #### Setup DB Account in YTEX
-
-Copying a MySQL config file from the ytex resource jar file to the cTAKES resources folder. You run following four commands.
-
-```
-cd %CTAKES_HOME%\resources
-mkdir org\apache\ctakes\ytex
-jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql.example 
-copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
-```
-
-If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. 
 
 If you use a different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
 
