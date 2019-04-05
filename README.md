@@ -84,7 +84,7 @@ dbping:
      [java] 	at org.apache.ctakes.ytex.tools.DBPing.main(DBPing.java:38)
 ```
 
-If you check the ytex folder under `D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes\`, you will not find it from the intallation package. You can however find it from the source code (third zipped file) or you can also find it from `ctakes-ytex-res-4.0.0.jar` under the library folder. Since I installed the source code as well, I copied the ytex resource folder. 
+You proabaly cannot find the ytex folder from the intallation package. You can, however, find it from the `source code` (third zipped file) or you can find it from `ctakes-ytex-res-4.0.0.jar` under the `lib` folder. Since I installed the source code as well, I copied the ytex resource folder. 
 
 * copy D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex-res\src\main\resources\org\apache\ctakes\ytex folder 
 * paste it to D:\cTAKES\apache-ctakes-4.0.0\resources\org\apache\ctakes
