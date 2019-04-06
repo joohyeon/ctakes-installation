@@ -19,7 +19,8 @@ Once downladed files, create a new folder say `D:\cTAKES` and decompress all zip
 
 You then move the "resources" folder to "apache-ctakes-4.0.0" folder. Becuase "resources" folder exists under the apache-ctakes-4.0.0, you see a popup saying that "Do you want to replace it?". Don't worry. You can overwrite files. The UMLS resource contains UMLS2011ab, rxnrom, orange_book, etc. that allow us to retreive more comprehensive results from cTAKES.
 
-TODO: It is 2019 now.. show how to upgrade the UMLS lookup table.
+
+cTAKES extract clinical terminology based on UMLS dictionary. If you want to use the latest UMLS, check Update UMLS section below. I recommend to upgrade the latest UMLS.
 
 
 
@@ -114,6 +115,7 @@ According to the YTEX installation guide, you need to create an YTEX account.
 CREATE DATABASE ytex CHARACTER SET utf8;
 CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'ytex';
 GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'localhost';
+FLUSH PRIVILEGES;
 ```
 
 If you are uinsg later MySQL which requires caching_sha2_password, add WITH mysql_native_password when you create an account.
@@ -697,3 +699,16 @@ Spring bean is not able to load depricated function. Go to a folder where you co
 
 Finally, it is running and build is successfully completed!!
 
+
+## Upgrade UMLS to the latest version
+
+You first need to download and install UMLS in the database. You can easily find tutorials how to install UMLS on your local machine. The UMLS is available [here](https://uts.nlm.nih.gov/home.html). 
+
+I created a `UMLS2018` database in MySQL, then grant `ytex` access to UMLS2018 database.
+
+```
+GRANT ALL PRIVILEGES ON UMLS2018.* TO 'ytex'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+You can then run the `build-setup.xml` file.
