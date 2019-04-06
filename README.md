@@ -172,7 +172,424 @@ You need to download database connector library, and copy the file to `%CTAKES_H
 - MySQL: [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
 - MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
 
-After adding this library in the `lib` folder, run the build-setup command again and monitor command messages. You will see new error messages.
+After adding this library in the `lib` folder, run the build-setup command again and monitor command messages. 
+
+
+If you check `setup.out` file, it might be succecfully installed. You will the find `BUILD SUCCESSFUL` at the end of the file.
+
+Here is an example after successfully installed.
+
+```
+D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
+Buildfile: D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\build-setup.xml
+
+dbping:
+
+dbping:
+     [java] Sat Apr 06 00:02:22 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+     [java] DBPing: connection succeeded
+
+templateToConfig.init:
+
+templateToConfig.extractTemplates:
+     [echo] unpacking ytex templates from D:\cTAKES\apache-ctakes-4.0.0\lib\ctakes-ytex-res-4.0.0.jar to D:\cTAKES\apache-ctakes-4.0.0/resources
+    [unzip] Expanding: D:\cTAKES\apache-ctakes-4.0.0\lib\ctakes-ytex-res-4.0.0.jar into D:\cTAKES\apache-ctakes-4.0.0\resources
+
+templateToConfig.updateConfig:
+     [echo] config.source.dir = D:\cTAKES\apache-ctakes-4.0.0/resources
+     [echo] config.generated.dir = D:\cTAKES\apache-ctakes-4.0.0/resources
+     [copy] Copying 6 files to D:\cTAKES\apache-ctakes-4.0.0\resources
+
+templateToConfig:
+
+setupDatabase:
+
+init:
+
+umls.check.mrconso:
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+      [sql] Sat Apr 06 00:02:23 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing commands
+      [sql] 1 of 1 SQL statements executed successfully
+     [echo] mrconso.out = 
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\mrconso-check.txt
+     [echo] mrconso.exists = ${mrconso.exists}
+
+umls.all:
+     [echo] mrconso.exists = ${mrconso.exists}
+
+init:
+
+umls.drop.view:
+     [echo] drop v_snomed_fword_lookup table
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/./umls/drop_view.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex304437838.sql
+      [sql] Sat Apr 06 00:02:23 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex304437838.sql
+      [sql] 3 of 3 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex304437838.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex465780409use.sql
+
+init.conn:
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+
+umls.create.view:
+     [echo] create the v_snomed_fword_lookup table
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/./umls/create_view.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex796634785.sql
+      [sql] Sat Apr 06 00:02:23 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex796634785.sql
+      [sql] 2 of 2 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex796634785.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1041651537use.sql
+
+umls.import.view:
+     [echo] import v_snomed_fword_lookup from D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\data/umls/v_snomed_fword_lookup.txt.  Be patient, this can take a while.
+
+jdl:
+     [echo] jdl.format D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\data/umls/v_snomed_fword_lookup.xml
+     [echo] jdl.data D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\data/umls/v_snomed_fword_lookup.txt
+     [echo] umls.prefix ytex.
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [java] log4j: reset attribute= "false".
+     [java] log4j: Threshold ="null".
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressAppender] additivity to [false].
+     [java] log4j: Level value for ProgressAppender is  [INFO].
+     [java] log4j: ProgressAppender level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m].
+     [java] log4j: Adding appender named [noEolAppender] to category [ProgressAppender].
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressDone] additivity to [false].
+     [java] log4j: Level value for ProgressDone is  [INFO].
+     [java] log4j: ProgressDone level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m%n].
+     [java] log4j: Adding appender named [eolAppender] to category [ProgressDone].
+     [java] log4j: Level value for root is  [INFO].
+     [java] log4j: root level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n].
+     [java] log4j: Adding appender named [consoleAppender] to category [root].
+     [java] 06 Apr 2019 00:02:24  INFO CsvLoader - delimiter 9 encapsulator 65534
+     [java] 06 Apr 2019 00:02:24  INFO CsvLoader - insert into ytex.v_snomed_fword_lookup (cui,tui,fword,fstem,tok_str,stem_str) values (?,?,?,?,?,?)
+     [java] Sat Apr 06 00:02:25 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+     [java] 06 Apr 2019 00:02:28  INFO CsvLoader - inserted 2733 rows total
+
+umls.index.view:
+     [echo] index the v_snomed_fword_lookup table
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/./umls/index_view.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1093546108.sql
+      [sql] Sat Apr 06 00:02:29 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1093546108.sql
+      [sql] 4 of 4 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1093546108.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex833289655use.sql
+
+umls.setup.dump:
+
+uima.drop:
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/drop_view.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1036487328.sql
+      [sql] Sat Apr 06 00:02:29 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1036487328.sql
+      [sql] 9 of 9 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1036487328.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex330900497use.sql
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/drop_document.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1985071733.sql
+      [sql] Sat Apr 06 00:02:29 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1985071733.sql
+      [sql] 29 of 29 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1985071733.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex521907510use.sql
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/drop_reference.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1120773788.sql
+      [sql] Sat Apr 06 00:02:29 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1120773788.sql
+      [sql] 7 of 7 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1120773788.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex2072973262use.sql
+
+uima.create:
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/create_reference.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex616054423.sql
+      [sql] Sat Apr 06 00:02:29 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex616054423.sql
+      [sql] 10 of 10 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex616054423.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex194973019use.sql
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/create_document.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1943755009.sql
+      [sql] Sat Apr 06 00:02:30 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1943755009.sql
+      [sql] 26 of 26 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1943755009.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1868004140use.sql
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/create_view.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex601025773.sql
+      [sql] Sat Apr 06 00:02:30 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex601025773.sql
+      [sql] 5 of 5 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex601025773.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1370884159use.sql
+
+uima.create.trigger:
+
+init:
+
+init.conn:
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+
+uima.ref.load:
+
+jdl:
+     [echo] jdl.format ref_uima_type.xml
+     [echo] jdl.data ref_uima_type.txt
+     [echo] umls.prefix ytex.
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [java] log4j: reset attribute= "false".
+     [java] log4j: Threshold ="null".
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressAppender] additivity to [false].
+     [java] log4j: Level value for ProgressAppender is  [INFO].
+     [java] log4j: ProgressAppender level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m].
+     [java] log4j: Adding appender named [noEolAppender] to category [ProgressAppender].
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressDone] additivity to [false].
+     [java] log4j: Level value for ProgressDone is  [INFO].
+     [java] log4j: ProgressDone level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m%n].
+     [java] log4j: Adding appender named [eolAppender] to category [ProgressDone].
+     [java] log4j: Level value for root is  [INFO].
+     [java] log4j: root level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n].
+     [java] log4j: Adding appender named [consoleAppender] to category [root].
+     [java] 06 Apr 2019 00:02:31  INFO CsvLoader - delimiter 9 encapsulator 65534
+     [java] 06 Apr 2019 00:02:31  INFO CsvLoader - insert into ytex.ref_uima_type (uima_type_id,uima_type_name,table_name) values (?,?,?)
+     [java] Sat Apr 06 00:02:32 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+     [java] 06 Apr 2019 00:02:32  INFO CsvLoader - inserted 38 rows total
+
+init:
+
+init.conn:
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+
+uima.examples.load:
+
+jdl:
+     [echo] jdl.format examples/fracture_demo.xml
+     [echo] jdl.data examples/fracture_demo.txt
+     [echo] umls.prefix ytex.
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [java] log4j: reset attribute= "false".
+     [java] log4j: Threshold ="null".
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressAppender] additivity to [false].
+     [java] log4j: Level value for ProgressAppender is  [INFO].
+     [java] log4j: ProgressAppender level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m].
+     [java] log4j: Adding appender named [noEolAppender] to category [ProgressAppender].
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressDone] additivity to [false].
+     [java] log4j: Level value for ProgressDone is  [INFO].
+     [java] log4j: ProgressDone level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m%n].
+     [java] log4j: Adding appender named [eolAppender] to category [ProgressDone].
+     [java] log4j: Level value for root is  [INFO].
+     [java] log4j: root level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n].
+     [java] log4j: Adding appender named [consoleAppender] to category [root].
+     [java] 06 Apr 2019 00:02:33  INFO CsvLoader - delimiter 9 encapsulator 65534
+     [java] 06 Apr 2019 00:02:33  INFO CsvLoader - insert into ytex.fracture_demo (site_id,note_text,fracture,note_set) values (?,?,?,?)
+     [java] Sat Apr 06 00:02:34 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 2 rows
+     [java] 06 Apr 2019 00:02:34  INFO CsvLoader - inserted 31 rows total
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/uima/fracture_demo.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1390835486.sql
+      [sql] Sat Apr 06 00:02:35 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1390835486.sql
+      [sql] 2 of 2 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1390835486.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1836334136use.sql
+
+init:
+
+init.conn:
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+
+uima.stopword.load:
+
+jdl:
+     [echo] jdl.format stopword.xml
+     [echo] jdl.data stopword.txt
+     [echo] umls.prefix ytex.
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [java] log4j: reset attribute= "false".
+     [java] log4j: Threshold ="null".
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressAppender] additivity to [false].
+     [java] log4j: Level value for ProgressAppender is  [INFO].
+     [java] log4j: ProgressAppender level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m].
+     [java] log4j: Adding appender named [noEolAppender] to category [ProgressAppender].
+     [java] log4j: Retreiving an instance of org.apache.log4j.Logger.
+     [java] log4j: Setting [ProgressDone] additivity to [false].
+     [java] log4j: Level value for ProgressDone is  [INFO].
+     [java] log4j: ProgressDone level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%m%n].
+     [java] log4j: Adding appender named [eolAppender] to category [ProgressDone].
+     [java] log4j: Level value for root is  [INFO].
+     [java] log4j: root level set to INFO
+     [java] log4j: Class name: [org.apache.log4j.ConsoleAppender]
+     [java] log4j: Parsing layout of class: "org.apache.log4j.PatternLayout"
+     [java] log4j: Setting property [conversionPattern] to [%d{dd MMM yyyy HH:mm:ss} %5p %c{1} - %m%n].
+     [java] log4j: Adding appender named [consoleAppender] to category [root].
+     [java] 06 Apr 2019 00:02:36  INFO CsvLoader - delimiter 44 encapsulator 65534
+     [java] 06 Apr 2019 00:02:36  INFO CsvLoader - insert into ytex.ref_stopword (stopword) values (?)
+     [java] Sat Apr 06 00:02:36 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+     [java] 06 Apr 2019 00:02:36  INFO CsvLoader - inserted 360 rows total
+
+uima.all:
+
+kernel.drop:
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/kernel/drop_tables.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex1897747047.sql
+      [sql] Sat Apr 06 00:02:37 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex1897747047.sql
+      [sql] 22 of 22 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex1897747047.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex894257681use.sql
+
+kernel.create:
+
+jdbc.sqlcmd:
+     [echo] db.schemaytex
+     [echo] umls.schema ytex
+     [echo] umls.catalog 
+     [echo] execute ./mysql/kernel/create_tables.sql
+     [copy] Copying 1 file to C:\Users\thejoo\AppData\Local\Temp
+     [echo] executing C:\Users\thejoo\AppData\Local\Temp\ytex701768143.sql
+      [sql] Sat Apr 06 00:02:37 EDT 2019 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+      [sql] Executing resource: C:\Users\thejoo\AppData\Local\Temp\ytex701768143.sql
+      [sql] 23 of 23 SQL statements executed successfully
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex701768143.sql
+   [delete] Deleting: C:\Users\thejoo\AppData\Local\Temp\ytex588177037use.sql
+
+kernel.all:
+
+all:
+
+all:
+
+BUILD SUCCESSFUL
+Total time: 16 seconds
+
+```
+
+If you run into other error messages, you then read futher below. 
 
 
 ## Issue 2 - rank 
@@ -218,7 +635,7 @@ create table hotspot_sentence (
 </pre>
 
 
-#### Issue 3 - HibernateException
+## Issue 3 - HibernateException
 
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
 
@@ -227,18 +644,18 @@ Detail:
 
 As it says, there is no class and you need to download a jar called hibernate-core-4.2.6.Final, and copy it to the CTAKES_HOME/lib folder.  download link https://mvnrepository.com/artifact/org.hibernate/hibernate-core/4.2.6.Final
 
-3.
+## Issue 4.
 After re-run the ant script, I passed HibernateException, but build was still failed due to 
 "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/MetadataProvider"
 
 Again, no class found in the program. To resovle this issue, you need to download a hibernate-commons-annotations-4.0.2.Final lib. Link:
 
-4.
+## Issue 5.
 Let's run this script again.. and another no class issue.  "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/jboss/logging/BasicLogger"
 
 jBoss logger library is missing. Donwload jboss-logging-3.1.0.GA.jar file from Maven. 
 
-5. 
+## Issue 6.
 After re-run the script, I got another no class found error.
 
 "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: javax/transaction/SystemException"
@@ -246,27 +663,27 @@ After re-run the script, I got another no class found error.
 Download javax.transaction-api-1.2.jar and store it to CTAKES_HOME/lib. 
 
 
-6. 
+## Issue 7.
 
 "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: javax/persistence/Entity"
 
 Download: javax.persistence-api-2.2.jar 
 
-7. 
+## Issue 8.
 
 "java.lang.ClassNotFoundException: Could not load requested class : org.hibernate.cache.ehcache.EhCacheRegionFactory"
 
 Download: hibernate-ehcache-4.2.6.Final.jar
 
 
-8. 
+## Issue 8.
 
 "Caused by: java.lang.ClassNotFoundException: weka.core.Instance"
 
 Download: weka-stable-3.6.10.jar 
 
 
-9. depricated gramMAtrixExporter
+## Issue 9 - depricated gramMAtrixExporter
 
 " Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'gramMatrixExporter' defined in class path resource [org/apache/ctakes/ytex/beans-kernel.xml]: Initialization of bean failed; nested exception is org.springframework.beans.FatalBeanException: Failed to obtain BeanInfo for class [org.apache.ctakes.ytex.weka.GramMatrixExporterImpl]; nested exception is java.beans.IntrospectionException: type mismatch between read and write methods" 
 
