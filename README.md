@@ -179,6 +179,8 @@ If you check `setup.out` file, it might be succecfully installed. You will the f
 
 Here is an example after successfully installed.
 
+<details><summary>Click Here to See Detail</summary>
+<p>
 ```
 D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
 Buildfile: D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\build-setup.xml
@@ -586,8 +588,9 @@ all:
 
 BUILD SUCCESSFUL
 Total time: 16 seconds
-
 ```
+</p>
+</details>
 
 If you run into other error messages, you then read futher below. 
 
