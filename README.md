@@ -137,13 +137,13 @@ cd %CTAKES_HOME%\bin\ctakes-ytex\scripts
 ..\..\ant.bat -f build-setup.xml all > setup.out 
 ```
 
-<-- 
+<!-- 
 This `ant` build command is to install tables in the ytex database, and also add necessary data. If you don't have UMLS set up in your local database, this will takes a couple of minutes. If you have UMLS installed, a couple of hours to install necessary data.  
 
 I ran this command this `ant` build script and as erroring out I noted down the issue and the way to solve it. You can skip some of issues if you don't see it. Just search a couple of key words in your error messages. You may able to find the solution. 
 -->
 
-In my case, I still won't be able to install YTEX. I don't see Not found file issue now, but dbping error throws an error.
+In my case, I still won't be able to install YTEX. I don't see Not found file issue now, but `dbping` error throws an error.
 
 ```
 D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
@@ -165,18 +165,17 @@ dbping:
 ```
 
 
-
-#### Issue 1 - DBPing
+## Issue 1 - DBPing
 It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no MySQL DB connector lib. 
 
-You need to download database connector library, and copy the file to %CTAKES_HOME%\lib. 
-- MySQL: mysql-conntector-java (link)
-- MsSQL: sqljdbc (link) 
+You need to download database connector library, and copy the file to `%CTAKES_HOME%\lib`. 
+- MySQL: [mysql-conntector-java](http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar)
+- MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
 
-After adding this library, run the command again and monitor command messages. You will see new error messages.
+After adding this library, run the build command again and monitor command messages. You will see new error messages.
 
 
-#### Issue 2 - rank 
+## Issue 2 - rank 
 
 The MySQL version 8 or later doesn't like to have a column name using a reserved word. YTEX db scripts use rank in the column name and generated following error message.
 ```
