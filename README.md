@@ -169,7 +169,7 @@ dbping:
 It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no MySQL DB connector lib. 
 
 You need to download database connector library, and copy the file to `%CTAKES_HOME%\lib`. 
-- MySQL: [mysql-conntector-java](http://central.maven.org/maven2/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar)
+- MySQL: [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
 - MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
 
 After adding this library in the `lib` folder, run the build-setup command again and monitor command messages. You will see new error messages.
