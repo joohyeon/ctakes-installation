@@ -93,12 +93,12 @@ Here is how you do if you installed the source code.
 * rename `ytex.properties.mysql.example` to `ytex.properties`
 
 Here is how you can copy `ytex.properties` file from the ctakes resource jar. 
-* cd %CTAKES_HOME%\resources
-* mkdir org\apache\ctakes\ytex
-* jar xf ..\lib\ctakes-ytex-res-*.jar org/apache/ctakes/ytex/ytex.properties.mysql.example 
-* copy org\apache\ctakes\ytex\ytex.properties.mysql.example org\apache\ctakes\ytex\ytex.properties
+* cd `%CTAKES_HOME%\resources`
+* mkdir `org\apache\ctakes\ytex`
+* jar xf `..\lib\ctakes-ytex-res-*.jar` `org/apache/ctakes/ytex/ytex.properties.mysql.example`
+* copy `org\apache\ctakes\ytex\ytex.properties.mysql.example` `org\apache\ctakes\ytex\ytex.properties`
 
-If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. 
+If you are having a trouble of "jar" command, you can google to how to add jar to Windows enviornment. The executable jar is inside the jdk bin folder. If you were not able to extract the db configuration file, you can unzip ctakes-ytex-res-4.0.0.jar file in lib, and copy ytex folder from the unzipped lib to %CTAKES_HOME%\resources\org\apache\ctakes\ytex.
 
 You can choose different config files such as Oracle, MsSQL or MySQL depending on your database. 
 
@@ -112,7 +112,7 @@ This is a summary of what I did to set up MySQL database and followed cTAKES/YTE
 According to the YTEX installation guide, you need to create an YTEX account.
 ```
 CREATE DATABASE ytex CHARACTER SET utf8;
-CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'ytex'@'localhost' IDENTIFIED BY 'ytex';
 GRANT ALL PRIVILEGES ON ytex.* TO 'ytex'@'localhost';
 ```
 
@@ -123,39 +123,47 @@ CREATE USER 'ytex'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ytex';
 
 #### Setup DB Account in YTEX
 
-If you use a different passowrd, you need to open the "ytex.properties" file and change db.passowrd. 
+If you use a different passowrd, you need to open the `ytex.properties` file and change db.passowrd. 
 
-Again, make sure your ytex.properties file is stored in "%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties". You also make sure db name, user id/pw, schema information are correct. 
-
-
-#### Altenative way 
-
-If you don't want to use jar to extract the db configuration file, you can unzip ctakes-ytex-res-4.0.0.jar file in lib, and copy ytex folder from the unzipped lib to CTAKES_HOME\resources\org\apache\ctakes\ytex.
-
-There are a couple of examples of ytex.properties which you can select one that match your database, and rename the example file   to ytex.properties. In my case, I used ytex.properties.mssql.example and renamed it to ytex.properties.
+Again, make sure your ytex.properties file is stored in `%CTAKES_HOME%\resources\org\apache\ctakes\ytex\ytex.properties`. You also make sure db name, user id/pw, schema information are correct. 
 
 
-Setup UMLS DB
-------------
+# Intall YTEX Database 
 
-Recommend to install UMLS.. (link)
-
-
-
-Install YTEX Database
-------------
-
-This is where you will expect to see errors.. and failed to install YTEX. 
-
-I first changed my current directory to \bin\ctakes-ytex\scripts, and execute this command. 
+Let's run the script again after setting db id/password.
 
 ```
-D:\cTAKES\bin\ctakes-ytex\scripts>..\..\ant.bat -f build-setup.xml all
+cd %CTAKES_HOME%\bin\ctakes-ytex\scripts 
+..\..\ant.bat -f build-setup.xml all > setup.out 
 ```
 
+<-- 
 This `ant` build command is to install tables in the ytex database, and also add necessary data. If you don't have UMLS set up in your local database, this will takes a couple of minutes. If you have UMLS installed, a couple of hours to install necessary data.  
 
 I ran this command this `ant` build script and as erroring out I noted down the issue and the way to solve it. You can skip some of issues if you don't see it. Just search a couple of key words in your error messages. You may able to find the solution. 
+-->
+
+In my case, I still won't be able to install YTEX. I don't see Not found file issue now, but dbping error throws an error.
+
+```
+D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts>java -cp D:\cTAKES\apache-ctakes-4.0.0\lib\ant-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-launcher-1.9.2.jar;D:\cTAKES\apache-ctakes-4.0.0\lib\ant-contrib-1.0b3.jar org.apache.tools.ant.Main -f build-setup.xml all       
+Buildfile: D:\cTAKES\apache-ctakes-4.0.0\bin\ctakes-ytex\scripts\build-setup.xml
+
+dbping:
+
+dbping:
+     [java] java.lang.ClassNotFoundException: com.mysql.jdbc.Driver
+     [java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+     [java] DBPing: Connection to db failed - please check your settings and try again
+     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+     [java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+     [java] 	at java.lang.Class.forName0(Native Method)
+     [java] 	at java.lang.Class.forName(Unknown Source)
+     [java] 	at org.apache.ctakes.ytex.tools.DBPing.ping(DBPing.java:66)
+     [java] 	at org.apache.ctakes.ytex.tools.DBPing.main(DBPing.java:41)
+```
+
 
 
 #### Issue 1 - DBPing
