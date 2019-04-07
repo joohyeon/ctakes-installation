@@ -666,7 +666,7 @@ create table hotspot_sentence (
 
 ## Issue 3 - HibernateException
 
-After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
+After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException.
 
 ```
 'txAdvice' defined in class path resource [org/apache/ctakes/ytex/beans-datasource.xml]: Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [org/apache/ctakes/ytex/beans-datasource.xml]: Instantiation of bean failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/HibernateException
@@ -682,16 +682,30 @@ After re-run the ant script, I passed the DBPing error, but build was still fail
 
 As it says, there is no class available in the package. You can download the hiberante libraray and copy it to library folder.
 
-Solution:
+#### Solution
 * download [hibernate-core-4.2.6.Final](https://mvnrepository.com/artifact/org.hibernate/hibernate-core/4.2.6.Final)
 * copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 4.
-After re-run the ant script, I passed HibernateException, but build was still failed due to 
-"Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/MetadataProvider"
+## Issue 4. - MetadataProvider
 
-Again, no class found in the program. To resovle this issue, you need to download a hibernate-commons-annotations-4.0.2.Final lib. Link:
+Another NoClassDefFoundError issue. You will see something like this. Keyword is MetadataProvider in hiberante annotation lib.
+
+After re-run the ant script, I passed HibernateException, but build was still failed due to NoClassDefFoundError.
+
+```
+   [java] Caused by: java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/MetadataProvider
+     [java] 	at org.springframework.orm.hibernate4.LocalSessionFactoryBean.afterPropertiesSet(LocalSessionFactoryBean.java:277)
+     [java] 	at 
+```     
+
+To resovle this issue, you need to download a hibernate-commons-annotations-4.0.2.Final lib. Link:
+
+
+#### Solution
+* download [hibernate-commons-annotations-4.0.2.Final](https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations/4.0.2.Final)
+* copy the file to `%CTAKES_HOME$/lib`
+
 
 ## Issue 5.
 Let's run this script again.. and another no class issue.  "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/jboss/logging/BasicLogger"
