@@ -172,10 +172,10 @@ It is throwing errors. First error I had was "DBPing Connection to db failed - p
 
 You need to download database connector library, and copy the file to the library folder. 
 
-Solution:
+#### Solution
 * Download database base connection library. 
-** MySQL - [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
-** MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
+*   If you are using MySQL, download [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
+*   If you are using MsSQL, download [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671), then unzipp and copy sqljdbc42.jar
 * copy the library to `%CTAKES_HOME%\lib`
 
 After adding this library in the `lib` folder, run the build-setup command again and monitor command messages. 
