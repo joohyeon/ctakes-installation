@@ -597,6 +597,23 @@ Total time: 16 seconds
 </details>
 
 
+I was able to install YTEX successfully. UMLS schema is disabled by default and used a basic clinical words (2733 in `v_snomed_fword_lookup` table).  I recommend to install the latest UMLS and configure UMLS schema in `ytex.properties`. 
+
+
+## Upgrade UMLS to the latest version
+
+You first need to download and install UMLS in the database. You can easily find tutorials how to install UMLS on your local machine. The UMLS is available [here](https://uts.nlm.nih.gov/home.html). 
+
+I created a `UMLS2018` database in MySQL, then grant `ytex` access to UMLS2018 database.
+
+```
+GRANT ALL PRIVILEGES ON UMLS2018.* TO 'ytex'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+Then I uncommented `umls.schema` and change the value to `UMLS2018` in the `ytex.properties` file. You then run the `build-setup.xml` file again.
+
+
 If you run into other error messages, you then read futher below. 
 
 
@@ -700,15 +717,3 @@ Spring bean is not able to load depricated function. Go to a folder where you co
 Finally, it is running and build is successfully completed!!
 
 
-## Upgrade UMLS to the latest version
-
-You first need to download and install UMLS in the database. You can easily find tutorials how to install UMLS on your local machine. The UMLS is available [here](https://uts.nlm.nih.gov/home.html). 
-
-I created a `UMLS2018` database in MySQL, then grant `ytex` access to UMLS2018 database.
-
-```
-GRANT ALL PRIVILEGES ON UMLS2018.* TO 'ytex'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-You can then run the `build-setup.xml` file.
