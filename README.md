@@ -707,7 +707,7 @@ To resovle this issue, you need to download a hibernate-commons-annotations-4.0.
 * copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 5 - Jboss Loggins
+## Issue 5 - Jboss Logging
 ClassNotFoundException issue due to Jboss Logging. Error messages would look like this.
 
 ```
@@ -719,7 +719,6 @@ ClassNotFoundException issue due to Jboss Logging. Error messages would look lik
 [java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
 [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
 [java] 	... 70 more
-
 ```
 
 #### Solution
@@ -747,31 +746,91 @@ ClassNotFoundException issue due to transaction-api library. Error messages woul
 * copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 7.
 
-"Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: javax/persistence/Entity"
+## Issue 7 - Persistence
+ClassNotFoundException issue due to persistence api library. Error messages would look like this.
+```
+...
+[java] 	... 54 more
+[java] Caused by: java.lang.ClassNotFoundException: javax.persistence.Entity
+[java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	... 58 more
+```
 
-Download: javax.persistence-api-2.2.jar 
-
-## Issue 8.
-
-"java.lang.ClassNotFoundException: Could not load requested class : org.hibernate.cache.ehcache.EhCacheRegionFactory"
-
-Download: hibernate-ehcache-4.2.6.Final.jar
+#### Solution
+* download [javax.persistence-api-2.2.jar](https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api/2.2)
+* copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 8.
+## Issue 8 - EhCacheRegionFactory
+ClassNotFoundException issue due to EhCacheRegionFactory library. Error messages would look like this.
+```
+...
+[java] Caused by: org.hibernate.service.classloading.spi.ClassLoadingException: Unable to load class [org.hibernate.cache.ehcache.EhCacheRegionFactory]
+[java] 	at org.hibernate.service.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:152)
+[java] 	at org.hibernate.cfg.SettingsFactory.createRegionFactory(SettingsFactory.java:484)
+[java] 	... 64 more
+[java] Caused by: java.lang.ClassNotFoundException: Could not load requested class : org.hibernate.cache.ehcache.EhCacheRegionFactory
+[java] 	at org.hibernate.service.classloading.internal.ClassLoaderServiceImpl$AggregatedClassLoader.findClass(ClassLoaderServiceImpl.java:319)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.Class.forName0(Native Method)
+[java] 	at java.lang.Class.forName(Unknown Source)
+[java] 	at org.hibernate.service.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:149)
+[java] 	... 65 more
+```
 
-"Caused by: java.lang.ClassNotFoundException: weka.core.Instance"
+#### Solution
+* download [hibernate-ehcache-4.2.6.Final.jar](https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache/4.2.6.Final)
+* copy the file to `%CTAKES_HOME$/lib`
 
-Download: weka-stable-3.6.10.jar 
+
+## Issue 9 - Weka
+ClassNotFoundException issue due to weka library. Error messages would look like this.
+```
+[java] Caused by: java.lang.ClassNotFoundException: weka.core.Instance
+[java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	... 41 more
+```
+
+#### Solution
+* download [weka-stable-3.6.10.jar](https://mvnrepository.com/artifact/nz.ac.waikato.cms.weka/weka-stable/3.6.10)
+* copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 9 - depricated gramMAtrixExporter
 
-" Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'gramMatrixExporter' defined in class path resource [org/apache/ctakes/ytex/beans-kernel.xml]: Initialization of bean failed; nested exception is org.springframework.beans.FatalBeanException: Failed to obtain BeanInfo for class [org.apache.ctakes.ytex.weka.GramMatrixExporterImpl]; nested exception is java.beans.IntrospectionException: type mismatch between read and write methods" 
+## Issue 10 - gramMAtrixExporter
 
-Spring bean is not able to load depricated function. Go to a folder where you copy ytex resources. In my excample, cTAKES\resources\org\apache\ctakes\ytex. You can find beans-kernel.xml file. Open it and serach fo gramMatrixExporter. I just commented this bean so it won't load when you run your script. 
+The class is depricated that is no longer available. The error messages looks like below.
+
+```
+...
+[java] Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'gramMatrixExporter' defined in class path resource [org/apache/ctakes/ytex/beans-kernel.xml]: Initialization of bean failed; nested exception is org.springframework.beans.FatalBeanException: Failed to obtain BeanInfo for class [org.apache.ctakes.ytex.weka.GramMatrixExporterImpl]; nested exception is java.beans.IntrospectionException: type mismatch between read and write methods
+     [java] 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:527)
+...
+```
+
+Spring bean is not able to load depricated function. Go to folder where you copy ytex resources. In my example, `%CTAKES_HOME%\resources\org\apache\ctakes\ytex`. 
+
+#### Solution
+* find `beans-kernel.xml` under the ytex resource folder
+* Open it and serach fo gramMatrixExporter
+* Comment this bean so it won't load when you run your script. 
+
+Here is my example.
+```
+<!-- <bean id="gramMatrixExporter" class="org.apache.ctakes.ytex.weka.GramMatrixExporterImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="kernelEvaluationDao" ref="kernelEvaluationDao" />	
+		<property name="transactionManager" ref="transactionManager" />
+	</bean> -->
+```
 
 Finally, it is running and build is successfully completed!!
 
