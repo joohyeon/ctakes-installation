@@ -673,11 +673,11 @@ After re-run the ant script, I passed the DBPing error, but build was still fail
 
 ...
 
-  [java] Caused by: java.lang.ClassNotFoundException: org.hibernate.HibernateException
-     [java] 	at java.net.URLClassLoader.findClass(Unknown Source)
-     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
-     [java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
-     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] Caused by: java.lang.ClassNotFoundException: org.hibernate.HibernateException
+[java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
 ```
 
 As it says, there is no class available in the package. You can download the hiberante libraray and copy it to library folder.
@@ -687,11 +687,11 @@ As it says, there is no class available in the package. You can download the hib
 * copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 4. - MetadataProvider
+## Issue 4 - MetadataProvider
 
-Another NoClassDefFoundError issue. You will see something like this. Keyword is MetadataProvider in hiberante annotation lib.
+Another NoClassDefFoundError issue. Keyword is MetadataProvider in hiberante annotation lib.
 
-After re-run the ant script, I passed HibernateException, but build was still failed due to NoClassDefFoundError.
+After re-run the ant script, I passed HibernateException, but build was still failed and errors show like below.
 
 ```
    [java] Caused by: java.lang.NoClassDefFoundError: org/hibernate/annotations/common/reflection/MetadataProvider
@@ -707,17 +707,44 @@ To resovle this issue, you need to download a hibernate-commons-annotations-4.0.
 * copy the file to `%CTAKES_HOME$/lib`
 
 
-## Issue 5.
-Let's run this script again.. and another no class issue.  "Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: org/jboss/logging/BasicLogger"
+## Issue 5 - Jboss Loggins
+ClassNotFoundException issue due to Jboss Logging. Error messages would look like this.
 
-jBoss logger library is missing. Donwload jboss-logging-3.1.0.GA.jar file from Maven. 
+```
+...
+[java] 	... 54 more
+[java] Caused by: java.lang.ClassNotFoundException: org.jboss.logging.BasicLogger
+[java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	... 70 more
 
-## Issue 6.
-After re-run the script, I got another no class found error.
+```
 
-"Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: javax/transaction/SystemException"
+#### Solution
+* download [jboss-logging-3.1.0.GA.jar](https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging/3.1.0.GA)
+* copy the file to `%CTAKES_HOME$/lib`
 
-Download javax.transaction-api-1.2.jar and store it to CTAKES_HOME/lib. 
+
+
+## Issue 6 - Transaction
+ClassNotFoundException issue due to transaction-api library. Error messages would look like this.
+
+```
+...
+[java] 	... 54 more
+[java] Caused by: java.lang.ClassNotFoundException: javax.transaction.SystemException
+[java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+[java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+[java] 	... 62 more
+```
+
+#### Solution
+* download [javax.transaction-api-1.2.jar](https://mvnrepository.com/artifact/javax.transaction/javax.transaction-api/1.2)
+* copy the file to `%CTAKES_HOME$/lib`
 
 
 ## Issue 7.
