@@ -597,7 +597,7 @@ Total time: 16 seconds
 </details>
 
 
-I was able to install YTEX successfully. UMLS schema is disabled by default and used a basic clinical words (2733 in `v_snomed_fword_lookup` table).  I recommend to install the latest UMLS and configure UMLS schema in `ytex.properties`. 
+I was able to install YTEX successfully. However, YTEX was not using UMLS schema. It was disabled by default. It only uses very limited clinical words (2733 in `v_snomed_fword_lookup` table).  I recommend to install the latest UMLS and configure UMLS schema in `ytex.properties`. 
 
 
 ## Upgrade UMLS to the latest version
