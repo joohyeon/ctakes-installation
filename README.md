@@ -170,9 +170,13 @@ dbping:
 ## Issue 1 - DBPing
 It is throwing errors. First error I had was "DBPing Connection to db failed - please check your settings and try again". This is because of no MySQL DB connector lib. 
 
-You need to download database connector library, and copy the file to `%CTAKES_HOME%\lib`. 
-- MySQL: [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
-- MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
+You need to download database connector library, and copy the file to the library folder. 
+
+Solution:
+* Download database base connection library. 
+** MySQL - [mysql-connector-java-5.1.45.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.45/mysql-connector-java-5.1.45.jar)
+** MsSQL: [sqljdbc](https://www.microsoft.com/en-us/download/details.aspx?id=54671) > download tar.gz > unzipp and copy sqljdbc42.jar
+* copy the library to `%CTAKES_HOME%\lib`
 
 After adding this library in the `lib` folder, run the build-setup command again and monitor command messages. 
 
@@ -617,7 +621,7 @@ Then I uncommented `umls.schema` and change the value to `UMLS2018` in the `ytex
 If you run into other error messages, you then read futher below. 
 
 
-## Issue 2 - rank 
+## Issue 2 - Rank in MySQL version 8 
 
 The MySQL version 8 or later doesn't like to have a column name using a reserved word. YTEX db scripts use rank in the column name and generated following error message.
 ```
@@ -625,9 +629,9 @@ Failed to execute:   create table feature_rank ( feature_rank_id int auto_increm
 ```
 
 You can simply follow this step and replace the table.
-1. open a file - bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql 
+1. open a file - `bin\ctakes-ytex\scripts\data\mysql\kernel\create_tables.sql` 
 2. find sql scripts that use rank as a column name (feature_rank and hotspot_sentence tables)
-3. replace column name rank to \`rank\`
+3. replace column name rank to \`rank\`  (rank seems a reserved name in MySQL)
 
 Here is the table that I changed.
 <pre>
@@ -664,10 +668,24 @@ create table hotspot_sentence (
 
 After re-run the ant script, I passed the DBPing error, but build was still failed due to NoClassDefFoundError of HibernateException..
 
-Detail:
+```
 'txAdvice' defined in class path resource [org/apache/ctakes/ytex/beans-datasource.xml]: Cannot resolve reference to bean 'transactionManager' while setting bean property 'transactionManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'transactionManager' defined in class path resource [org/apache/ctakes/ytex/beans-datasource.xml]: Instantiation of bean failed; nested exception is java.lang.NoClassDefFoundError: org/hibernate/HibernateException
 
-As it says, there is no class and you need to download a jar called hibernate-core-4.2.6.Final, and copy it to the CTAKES_HOME/lib folder.  download link https://mvnrepository.com/artifact/org.hibernate/hibernate-core/4.2.6.Final
+...
+
+  [java] Caused by: java.lang.ClassNotFoundException: org.hibernate.HibernateException
+     [java] 	at java.net.URLClassLoader.findClass(Unknown Source)
+     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+     [java] 	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+     [java] 	at java.lang.ClassLoader.loadClass(Unknown Source)
+```
+
+As it says, there is no class available in the package. You can download the hiberante libraray and copy it to library folder.
+
+Solution:
+* download [hibernate-core-4.2.6.Final](https://mvnrepository.com/artifact/org.hibernate/hibernate-core/4.2.6.Final)
+* copy the file to `%CTAKES_HOME$/lib`
+
 
 ## Issue 4.
 After re-run the ant script, I passed HibernateException, but build was still failed due to 
