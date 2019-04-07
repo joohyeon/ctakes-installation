@@ -832,6 +832,9 @@ Here is my example.
 	</bean> -->
 ```
 
-Finally, it is running and build is successfully completed!!
+After following this steps, you run the `build-setup.xml` file. It will take some time to install UMLS data in YTEX database. The number of words in `v_snomed_fword_lookup` is xxxxx. Your cTAKES will be able to extract much more clinical terms. 
+
+I successfully installed cTAKES/YTEX using UMLS. 
+
 
 
