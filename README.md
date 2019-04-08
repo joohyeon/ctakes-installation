@@ -832,7 +832,7 @@ Here is my example.
 	</bean> -->
 ```
 
-After following this steps, you run the `build-setup.xml` file. It will take some time to install UMLS data in YTEX database. The number of words in `v_snomed_fword_lookup` is xxxxx. Your cTAKES will be able to extract much more clinical terms. 
+After following this steps, you run the `build-setup.xml` file. It will take some time to install UMLS data in YTEX database. The number of words in `v_snomed_fword_lookup` is 1.5 million (without UMLS, default was 2733). Your cTAKES will be able to extract much more clinical terms. 
 
 I successfully installed cTAKES/YTEX using UMLS. 
 
