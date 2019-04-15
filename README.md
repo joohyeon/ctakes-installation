@@ -820,7 +820,7 @@ Spring bean is not able to load depricated function. Go to folder where you copy
 
 #### Solution
 * find `beans-kernel.xml` under the ytex resource folder
-* Open it and serach fo gramMatrixExporter
+* Open it and search fo gramMatrixExporter
 * Comment this bean so it won't load when you run your script. 
 
 Here is my example.
