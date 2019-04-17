@@ -27,7 +27,7 @@ D:\dev\IntelliJ\myspace\ctakes\ctakes-ytex-uima\desc\analysis_engine\DictionaryL
 - add D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex\src\main\resources\org\apache\ctakes\ytex\dictionary\lookup\LookupDesc_SNOMED.xml
 - compile 'Apache cTAKES YTEX', 'Apache cTAKES YTEX UIMA' Maven Project 
 
-
+- add rxnorm conceptGraph: add D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex\src\main\resources\org\apache\ctakes\ytex\conceptGraph\sct-rxnorm.xml
 
 - add D:\cTAKES\apache-ctakes-4.0.0-src\ctakes-ytex\src\main\resources\org\apache\ctakes\ytex\umls\model\UMLS.hbm..xml
 FileNotFoundException: class path resource [org/apache/ctakes/ytex/umls/model/UMLS.hbm.xml
@@ -47,3 +47,7 @@ To get started, do the following:
 * Unzip ctakes-ytex-resources.zip: extract to  ctakes-ytex-res/src/main
 * run the maven build from the command line for ctakes-ytex-res, ctakes-ytex, ctakes-ytex-uima projects.  From the ctakes root directory:
 
+
+
+TODO: 
+Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 39,356,285 milliseconds ago.  The last packet sent successfully to the server was 39,356,287 milliseconds ago. is longer than the server configured value of 'interactive_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.

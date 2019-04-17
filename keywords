@@ -1,0 +1,12 @@
+cTAKES: clinical Text Analysis and Knowledge Extraction System
+UIMA: Unstructured Information Management Applications
+CAS: Common Analysis Structure
+JCas: Java CAS
+CVD: CAS Visual Debugger
+CPE: Collection Processing Engine
+CPM: Collection Processing Manager
+CPE vs CPM: CPM is the part of the UIMA frameword that manages the execution of a workflow of UIMA components
+            orchestrated to analyze a large collection of documents.
+            CPE is component created by the framework from a specific CPE descriptor such as Collection Reader,
+            Analysis Engines, CAS Initializer and CAS Consumers.
+
